@@ -57,6 +57,19 @@ public class PlayerController : MonoBehaviour
         }
         //
         
+        FlipPlayer();
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
+        animator.SetBool("isRunning", moveInput != 0);
+        animator.SetBool("isAirborne", !isGrounded);
+        
+    }
+
+    void FlipPlayer() {
         if (moveInput > 0) {
             spriteRenderer.flipX = false;
             firePoint.localPosition = new Vector3(Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
@@ -68,6 +81,16 @@ public class PlayerController : MonoBehaviour
             firePoint.localPosition = new Vector3(-Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
             firePoint.localEulerAngles = new Vector3(0, 180, 0);
         }
+    }
 
+    void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+    
+    public void TakeDamage()
+    {
+        animator.SetTrigger("Hurt");
+        
     }
 }
