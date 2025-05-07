@@ -323,10 +323,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgrounds:
-  - {fileID: 1438195281}
+  - {fileID: 0}
   - {fileID: 129097347}
   - {fileID: 1642413933}
-  - {fileID: 782208948}
+  - {fileID: 0}
   cameraTransform: {fileID: 1447881326}
   parallaxFactor: 0.1
 --- !u!4 &227273280
@@ -342,10 +342,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1438195281}
   - {fileID: 129097347}
   - {fileID: 1642413933}
-  - {fileID: 782208948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &290525544
@@ -380,9 +378,8 @@ Transform:
   m_Children:
   - {fileID: 521387416}
   - {fileID: 1827164725}
-  - {fileID: 1226830739}
-  - {fileID: 1380190093}
-  - {fileID: 1200769403}
+  - {fileID: 118092100}
+  - {fileID: 314350080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &290525546
@@ -400,9 +397,9 @@ MonoBehaviour:
   backgrounds:
   - {fileID: 521387416}
   - {fileID: 1827164725}
-  - {fileID: 1226830739}
-  - {fileID: 1380190093}
-  - {fileID: 1200769403}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   cameraTransform: {fileID: 1447881326}
   parallaxFactor: 0.05
 --- !u!1 &314350079
@@ -699,7 +696,7 @@ MonoBehaviour:
   - {fileID: 677428306}
   - {fileID: 431812978}
   - {fileID: 1955145592}
-  - {fileID: 939748819}
+  - {fileID: 0}
   cameraTransform: {fileID: 1447881326}
   parallaxFactor: 0.01
 --- !u!4 &672219626
@@ -718,8 +715,6 @@ Transform:
   - {fileID: 677428306}
   - {fileID: 431812978}
   - {fileID: 1955145592}
-  - {fileID: 939748819}
-  - {fileID: 677428306}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &677428304
@@ -902,12 +897,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8019239915147560276, guid: 651a0c3d3359e44568f6620b27470444, type: 3}
+  m_Sprite: {fileID: -8019239915147560276, guid: 3193a9feb2c48446a8250886b04b0e54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 0.2, y: 0.2}
+  m_DrawMode: 0
+  m_Size: {x: 0.21, y: 0.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -923,11 +918,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.04, y: 2.01, z: 0}
-  m_LocalScale: {x: 5.2499995, y: 10.799999, z: 5}
+  m_LocalScale: {x: 3.7499998, y: 5.999999, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1969675991}
-  - {fileID: 1270938612}
+  - {fileID: 1632895742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &689808955
@@ -945,11 +940,15 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 10
   bulletPrefab: {fileID: 8532368097287828188, guid: fa73e2cf4e0054c9e828efaae3c49aa9, type: 3}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1632895742}
   groundCheck: {fileID: 1969675991}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  spriteRenderer: {fileID: 0}
+  rifleSprite: {fileID: 0}
+  normalSprite: {fileID: 0}
+  isRifleMode: 0
 --- !u!61 &689808956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -988,10 +987,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.28, y: 0.36}
-    newSize: {x: 0.2, y: 0.2}
+    oldSize: {x: 0.21, y: 0.36}
+    newSize: {x: 0.21, y: 0.36}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 0.2, y: 0.2}
@@ -1018,6 +1017,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &689808958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689808950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65528f6f9f5eb4433a60a15a8340d5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8755344977373526971, guid: e98610ca74a914e9aae616006ee5251e, type: 3}
+  playerController: {fileID: 689808955}
 --- !u!1 &1447881323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1184,37 @@ MonoBehaviour:
   target: {fileID: 689808954}
   offset: {x: 0, y: 1, z: -20}
   smoothSpeed: 5
+--- !u!1 &1632895741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632895742}
+  m_Layer: 6
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1632895742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632895741}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.09200001, y: 0.006800007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 689808954}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1642413932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,9 +1705,7 @@ SceneRoots:
   - {fileID: 1447881326}
   - {fileID: 689808954}
   - {fileID: 2070672707}
-  - {fileID: 853441716}
-  - {fileID: 1260247581}
   - {fileID: 672219626}
   - {fileID: 290525545}
-  - {fileID: 1434957202}
-  - {fileID: 1096504475}
+  - {fileID: 4713569053492236452}
+  - {fileID: 227273280}
