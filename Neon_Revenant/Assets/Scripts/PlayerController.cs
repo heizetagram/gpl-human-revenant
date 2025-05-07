@@ -4,16 +4,16 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
-    private Rigidbody2D rb;
-    private bool isGrounded;
-    private float moveInput;
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    private Animator animator;
+
     public Transform groundCheck;
     public LayerMask groundLayer;
+
+    private Rigidbody2D rb;
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
-    
+
+    private bool isGrounded;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,27 +23,32 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
+        float moveInput = Input.GetAxisRaw("Horizontal");
+
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
-        
-        animator.SetBool("isRunning", moveInput != 0);
-        
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+        if (moveInput > 0)
+            spriteRenderer.flipX = false;
+        else if (moveInput < 0)
+            spriteRenderer.flipX = true;
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-        
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        }
-        
-        if (moveInput > 0)
-            spriteRenderer.flipX = false; 
-        else if (moveInput < 0)
-            spriteRenderer.flipX = true; 
+
+        animator.SetBool("isRunning", moveInput != 0);
+        animator.SetBool("isAirborne", !isGrounded);
+    }
+
+    void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+    
+    public void TakeDamage()
+    {
+        animator.SetTrigger("Hurt");
         
     }
 }
