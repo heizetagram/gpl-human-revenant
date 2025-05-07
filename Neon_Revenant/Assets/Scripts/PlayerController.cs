@@ -12,8 +12,11 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public Transform groundCheck;
     public LayerMask groundLayer;
-    private SpriteRenderer spriteRenderer;
-    
+    public SpriteRenderer spriteRenderer;
+    public Sprite rifleSprite;
+    public Sprite normalSprite;
+    public bool isRifleMode = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,16 +37,37 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+
+        // Weapons mechanics
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            animator.SetBool("isRifleMode", true);
+            isRifleMode = true;
+            spriteRenderer.sprite = rifleSprite;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            animator.SetBool("isRifleMode", false);
+            isRifleMode = false;
+            spriteRenderer.sprite = normalSprite;
+        }
         
         if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
+        //
         
-        if (moveInput > 0)
-            spriteRenderer.flipX = false; 
+        if (moveInput > 0) {
+            spriteRenderer.flipX = false;
+            firePoint.localPosition = new Vector3(Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
+            firePoint.localEulerAngles = new Vector3(0, 0, 0);
+        }
         else if (moveInput < 0)
-            spriteRenderer.flipX = true; 
-        
+        {
+            spriteRenderer.flipX = true;
+            firePoint.localPosition = new Vector3(-Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
+            firePoint.localEulerAngles = new Vector3(0, 180, 0);
+        }
+
     }
 }
