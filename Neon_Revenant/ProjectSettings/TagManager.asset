@@ -42,5 +42,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Objects
+    uniqueID: 1284642229
+    locked: 0
+  - name: Ground
+    uniqueID: 1231386467
+    locked: 0
+  - name: Player
+    uniqueID: 1799515895
+    locked: 0
   m_RenderingLayers:
   - Default
