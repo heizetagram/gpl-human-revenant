@@ -941,8 +941,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 10
-  bulletPrefab: {fileID: 8532368097287828188, guid: fa73e2cf4e0054c9e828efaae3c49aa9, type: 3}
-  firePoint: {fileID: 0}
   groundCheck: {fileID: 1969675991}
   groundLayer:
     serializedVersion: 2
@@ -1846,8 +1844,8 @@ Camera:
   m_GameObject: {fileID: 1447881323}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.16470589, g: 0, b: 0.24313726, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
