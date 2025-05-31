@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    public float jumpForce = 1f;
 
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-
+    private PlayerHealth playerHealth;
     private bool isGrounded;
 
     void Start()
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     void Update()
@@ -49,6 +50,6 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         animator.SetTrigger("Hurt");
-        
+        playerHealth.TakeDamage(10);
     }
 }
