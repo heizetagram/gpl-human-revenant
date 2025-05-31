@@ -47,9 +47,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
     
-    public void TakeDamage()
+    public void TakeDamage(int amount)
     {
         animator.SetTrigger("Hurt");
-        playerHealth.TakeDamage(10);
+        playerHealth.TakeDamage(amount);
     }
 }
