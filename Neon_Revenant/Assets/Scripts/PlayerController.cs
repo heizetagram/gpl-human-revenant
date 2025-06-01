@@ -10,9 +10,15 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     private PlayerHealth playerHealth;
     private bool isGrounded;
+    // From test-3
+    private float moveInput;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public bool isRifleMode = false;
+
 
     void Start()
     {
@@ -24,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float moveInput = Input.GetAxisRaw("Horizontal");
+        moveInput = Input.GetAxisRaw("Horizontal");
 
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
@@ -33,6 +39,26 @@ public class PlayerController : MonoBehaviour
         else if (moveInput < 0)
             spriteRenderer.flipX = true;
 
+        // Weapons mechanics
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            animator.SetBool("isRifleMode", true);
+            isRifleMode = true;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            animator.SetBool("isRifleMode", false);
+            isRifleMode = false;
+        }
+
+        if (Input.GetButtonDown("Fire1") && isRifleMode)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            int direction = spriteRenderer.flipX ? -1 : 1;
+            bullet.GetComponent<Bullet>().SetDirection(direction);
+        }
+        
+        FlipPlayer();
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -40,6 +66,23 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("isRunning", moveInput != 0);
         animator.SetBool("isAirborne", !isGrounded);
+        
+    }
+
+    void FlipPlayer()
+    {
+        if (moveInput > 0)
+        {
+            spriteRenderer.flipX = false;
+            firePoint.localPosition = new Vector3(Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
+            firePoint.localEulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (moveInput < 0)
+        {
+            spriteRenderer.flipX = true;
+            firePoint.localPosition = new Vector3(-Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
+            firePoint.localEulerAngles = new Vector3(0, 180, 0);
+        }
     }
 
     void FixedUpdate()
