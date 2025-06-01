@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BossHealth : MonoBehaviour
+public class BossHealth : MonoBehaviour, IDamageable
 {
     public HealthBar healthbar;
     public int health = 500;
@@ -16,23 +16,30 @@ public class BossHealth : MonoBehaviour
     {
         if (isInvulnerable)
             return;
-
         health -= damage;
-        healthbar.UpdateHealthBar(200, health);
-        if (health <= 200)
-        {
-            GetComponent<Animator>().SetBool("IsEnraged", true);
-        }
+      
+       // if (health <= 200)
+        //{
+        //    GetComponent<Animator>().SetBool("IsEnraged", true);
+        //}
 
         if (health <= 0)
         {
             Die();
         }
+        
+        //healthbar.UpdateHealthBar(200, health);
     }
 
     void Die()
     {
         GetComponent<Animator>().SetTrigger("Death");
+        StartCoroutine(DestroyAfterDelay(1.5f));
+    }
+    
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
 

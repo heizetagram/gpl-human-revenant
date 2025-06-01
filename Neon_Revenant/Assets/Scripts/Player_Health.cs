@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,19 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        if (currentHealth <= 0)
+        {
+            GetComponent<Animator>().SetTrigger("Death");
+            StartCoroutine(DestroyAfterDelay(1.5f));
+        }
+        
         UpdateHealthBar();
+    }
+    
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
     void UpdateHealthBar()
