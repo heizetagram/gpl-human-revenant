@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,24 +6,29 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     public int health = 100;
     public GameObject deathEffect;
-    public Animator animator;
+    private Animator _animator;
+
+    public void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     public void Update()
     {
         float speed = Mathf.Abs(GetComponent<Rigidbody2D>().linearVelocity.x);
 
-        animator.SetBool("isRunning", speed != 0);
+        _animator.SetBool("isRunning", speed != 0);
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
 
-        animator.SetTrigger("Hit");
+        _animator.SetTrigger("Hurt");
 
         if (health <= 0)
         {
-            animator.SetTrigger("Death");
+            _animator.SetTrigger("Death");
             StartCoroutine(WaitAndDie(0.5f));
         }
     }

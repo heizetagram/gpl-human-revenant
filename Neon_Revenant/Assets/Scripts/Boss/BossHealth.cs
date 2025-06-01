@@ -16,6 +16,8 @@ public class BossHealth : MonoBehaviour, IDamageable
     {
         if (isInvulnerable)
             return;
+        
+        GetComponent<Animator>().SetTrigger("Hurt");
         health -= damage;
       
        // if (health <= 200)

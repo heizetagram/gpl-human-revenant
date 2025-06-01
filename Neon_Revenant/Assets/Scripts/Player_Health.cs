@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -40,7 +41,10 @@ public class PlayerHealth : MonoBehaviour
     }
     void Update()
     {
-    if (Input.GetKeyDown(KeyCode.H))
-        TakeDamage(10);
+        if (transform.position.y < -20f)
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene("MainMenu");
+        } 
     }
 }
