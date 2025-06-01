@@ -44,7 +44,7 @@ public class EnemyChase : MonoBehaviour
         PlayerController pc = player.GetComponent<PlayerController>();
         if (pc != null)
         {
-            pc.TakeDamage();
+            pc.TakeDamage(10); 
         }
     }
 }
