@@ -13482,7 +13482,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   deathEffect: {fileID: 0}
-  animator: {fileID: 0}
+  barcodeLootPrefabs:
+  - {fileID: 547919045062196912, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+  lootDropCount: 1
 --- !u!95 &1470823135
 Animator:
   serializedVersion: 7
