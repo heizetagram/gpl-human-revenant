@@ -17,8 +17,6 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Update()
     {
         float speed = Mathf.Abs(GetComponent<Rigidbody2D>().linearVelocity.x);
-
-        _animator.SetBool("isRunning", speed != 0);
     }
 
     public void TakeDamage(int damage)
@@ -30,7 +28,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             _animator.SetTrigger("Death");
-            StartCoroutine(WaitAndDie(0.5f));
+            StartCoroutine(WaitAndDie(1.5f));
         }
     }
 

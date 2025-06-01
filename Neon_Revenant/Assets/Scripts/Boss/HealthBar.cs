@@ -1,5 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class HealthBar : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class HealthBar : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _healthBarSprite = GetComponentInChildren<Image>();
     }
 
     // Update is called once per frame
@@ -18,6 +19,7 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar(float maxHealth, float currentHealth)
     {
+        Debug.Log("in der methode!!! :" + currentHealth/ maxHealth);
         _healthBarSprite.fillAmount = currentHealth / maxHealth;
     }
 }

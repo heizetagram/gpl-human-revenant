@@ -6,7 +6,6 @@ public class BarcodeLoot : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {   
-        Debug.Log(other);
         if (other.CompareTag("Player"))
         {
             Debug.Log("Barcode eingesammelt! +" + value);

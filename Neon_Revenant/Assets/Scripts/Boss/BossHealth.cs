@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,18 @@ using UnityEngine.EventSystems;
 
 public class BossHealth : MonoBehaviour, IDamageable
 {
-    public HealthBar healthbar;
+    private HealthBar _healthbar;
     public int health = 500;
 
     public GameObject deathEffect;
 
     public bool isInvulnerable = false;
-    
+
+    public void Start()
+    {
+        _healthbar = GetComponentInChildren<HealthBar>();
+    }
+
     public void TakeDamage(int damage)
     {
         if (isInvulnerable)
@@ -29,14 +35,13 @@ public class BossHealth : MonoBehaviour, IDamageable
         {
             Die();
         }
-        
-        //healthbar.UpdateHealthBar(200, health);
+        _healthbar.UpdateHealthBar(500, health);
     }
 
     void Die()
     {
         GetComponent<Animator>().SetTrigger("Death");
-        StartCoroutine(DestroyAfterDelay(1.5f));
+        StartCoroutine(DestroyAfterDelay(3f));
     }
     
     IEnumerator DestroyAfterDelay(float delay)
