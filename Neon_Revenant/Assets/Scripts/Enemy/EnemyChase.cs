@@ -17,25 +17,26 @@ public class EnemyChase : MonoBehaviour
 
     void Update()
     {
-   
+
         if (player == null) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
-        
-   
-        
+
+
+
         if (distance > stoppingDistance)
         {
-            
+
             Vector2 direction = (player.position - transform.position).normalized;
             transform.position += (Vector3)(direction * speed * Time.deltaTime);
-            
+
             if (direction.x != 0)
                 sr.flipX = direction.x > 0;
-        } else if (Time.time >= lastAttackTime + attackCooldown)
+        }
+        else if (Time.time >= lastAttackTime + attackCooldown)
         {
-                Attack();
-                lastAttackTime = Time.time;
+            Attack();
+            lastAttackTime = Time.time;
         }
     }
     void Attack()
