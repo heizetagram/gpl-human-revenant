@@ -22,16 +22,33 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             GetComponent<Animator>().SetTrigger("Death");
-            StartCoroutine(DestroyAfterDelay(1.5f));
+            StartCoroutine(RespawnAfterDelay(3f));
+            
         }
         
         UpdateHealthBar();
     }
     
-    IEnumerator DestroyAfterDelay(float delay)
+    public void RestoreFullHealth()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthBar();
+    }
+    
+    IEnumerator RespawnAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+
+        PlayerCheckpoint checkpoint = GetComponent<PlayerCheckpoint>();
+        if (checkpoint != null)
+        {
+            checkpoint.Respawn();
+            RestoreFullHealth();
+        }
+
+        GetComponent<Animator>().ResetTrigger("Death");
+        GetComponent<Animator>().Play("Player_Idle");
+
     }
 
     void UpdateHealthBar()
@@ -41,10 +58,6 @@ public class PlayerHealth : MonoBehaviour
     }
     void Update()
     {
-        if (transform.position.y < -20f)
-        {
-            Destroy(gameObject);
-            SceneManager.LoadScene("MainMenu");
-        } 
+
     }
 }
