@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public bool isRifleMode = false;
+    private bool jumpRequested = false;
 
 
     void Start()
@@ -87,7 +88,22 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(groundLayer);
+        filter.useTriggers = false;
+
+        RaycastHit2D[] results = new RaycastHit2D[1];
+        int hitCount = rb.Cast(Vector2.down, filter, results, 0.1f);
+
+        isGrounded = hitCount > 0;
+
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+
+        if (jumpRequested)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            jumpRequested = false;
+        }
     }
     
     public void TakeDamage(int amount)
