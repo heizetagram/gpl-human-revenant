@@ -12509,10 +12509,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65528f6f9f5eb4433a60a15a8340d5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
-  rifleBulletPrefab: {fileID: 0}
-  powerGunBulletPrefab: {fileID: 0}
-  sniperBulletPrefab: {fileID: 0}
+  firePoint: {fileID: 1081942565}
+  rifleBulletPrefab: {fileID: 8755344977373526971, guid: e98610ca74a914e9aae616006ee5251e, type: 3}
+  powerGunBulletPrefab: {fileID: 2562800229472281649, guid: dd3c5f4b464c1450790705c1abdeb53a, type: 3}
+  sniperBulletPrefab: {fileID: 25815713398897100, guid: 932dcc1b739d7497884ca5fbd8a73c69, type: 3}
   playerController: {fileID: 689808955}
   rifleCooldown: 0.2
   powerGunCooldown: 0.3
