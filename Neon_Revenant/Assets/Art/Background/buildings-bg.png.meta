@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: c91c50c855a86456bb0b8148b2033aff
+guid: 334ec9ceac403437e8c5f716a880c594
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7190894766089717901
-    second: Screen2_0
-  - first:
-      213: 3278514479545802438
-    second: Screen2_1
-  - first:
-      213: 1040157436049116063
-    second: Screen2_2
-  - first:
-      213: 5507647685993686010
-    second: Screen2_3
+      213: 5131461394547859242
+    second: buildings-bg_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Screen2_0
+      name: buildings-bg_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 0
-        width: 20
-        height: 35
+        width: 144
+        height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d884ef5d0b03bc360800000000000000
-      internalID: 7190894766089717901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Screen2_1
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 0
-        width: 20
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6ce5d408c8f9f7d20800000000000000
-      internalID: 3278514479545802438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Screen2_2
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 0
-        width: 20
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f9b40365da16f6e00800000000000000
-      internalID: 1040157436049116063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Screen2_3
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 0
-        width: 20
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af3e7afb3681f6c40800000000000000
-      internalID: 5507647685993686010
+      spriteID: a2fd7a063fc963740800000000000000
+      internalID: 5131461394547859242
       vertices: []
       indices: 
       edges: []
@@ -210,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Screen2_0: 7190894766089717901
-      Screen2_1: 3278514479545802438
-      Screen2_2: 1040157436049116063
-      Screen2_3: 5507647685993686010
+      buildings-bg_0: 5131461394547859242
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
