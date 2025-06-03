@@ -2990,7 +2990,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7941996787873065683, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -13184,9 +13185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b82de01e9a742999f94a7b99382137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "hauptmen\xFCSzene": MainMenu
   wartezeit: 2
   gewinnUI: {fileID: 2050643044}
+  WinAmount: 100
 --- !u!1 &1917150765
 GameObject:
   m_ObjectHideFlags: 0
