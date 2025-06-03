@@ -7055,6 +7055,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 689808954}
+    - target: {fileID: 1811851540555630812, guid: 41f60825aee0142998af7f053095469d, type: 3}
+      propertyPath: stoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4279521904539440567, guid: 41f60825aee0142998af7f053095469d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.89
@@ -12447,10 +12451,16 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
-  bulletPrefab: {fileID: 8755344977373526971, guid: e98610ca74a914e9aae616006ee5251e, type: 3}
   firePoint: {fileID: 1081942565}
   isRifleMode: 0
+  hasPowerGun: 0
+  isPowerGunMode: 0
+  hasSniper: 0
+  isSniperMode: 0
+  equippedWeapon: 0
+  weapon: {fileID: 0}
 --- !u!95 &689808957
 Animator:
   serializedVersion: 7
@@ -12499,8 +12509,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65528f6f9f5eb4433a60a15a8340d5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  rifleBulletPrefab: {fileID: 0}
+  powerGunBulletPrefab: {fileID: 0}
+  sniperBulletPrefab: {fileID: 0}
   playerController: {fileID: 689808955}
+  rifleCooldown: 0.2
+  powerGunCooldown: 0.3
+  sniperCooldown: 1
 --- !u!70 &689808960
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

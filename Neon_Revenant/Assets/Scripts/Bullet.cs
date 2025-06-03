@@ -4,16 +4,17 @@ public class Bullet : MonoBehaviour {
     public float speed = 20f;
     public int damage = 40;
     public Rigidbody2D rb;
+    public float timeToLive = 2f;
 
     private int direction = 1;
     private bool directionSet = false;
+    private Vector2 startPosition;
 
     public void SetDirection(int dir)
     {
         direction = dir;
         directionSet = true;
 
-        // If rb is already initialized, apply immediately
         if (rb != null)
         {
             rb.linearVelocity = new Vector2(direction * speed, 0f);
@@ -22,16 +23,16 @@ public class Bullet : MonoBehaviour {
 
     void Start()
     {
-        // If direction was already set before Start, use it
+        startPosition = transform.position;
         if (directionSet)
         {
             rb.linearVelocity = new Vector2(direction * speed, 0f);
         }
         else
         {
-            // fallback in case SetDirection wasn't called yet
             rb.linearVelocity = new Vector2(speed, 0f);
         }
+        Destroy(gameObject, timeToLive);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -41,6 +42,18 @@ public class Bullet : MonoBehaviour {
         {
             damageable.TakeDamage(damage);
         }
-        Destroy(gameObject);
+            float distanceTraveled = Vector2.Distance(startPosition, transform.position);
+
+            float maxEffectiveRange = 10f;
+            float minDamageMultiplier = 0.3f; // Never go below 30% of base damage
+
+            float damageMultiplier = Mathf.Max(minDamageMultiplier, 1 - (distanceTraveled / maxEffectiveRange));
+            int finalDamage = Mathf.RoundToInt(damage * damageMultiplier);
+
+            damageable.TakeDamage(finalDamage);
+            Debug.Log(finalDamage);
+            Destroy(gameObject);
+        }
+     
     }
-}
+
