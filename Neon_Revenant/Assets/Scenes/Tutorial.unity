@@ -1597,7 +1597,6 @@ GameObject:
   - component: {fileID: 689808956}
   - component: {fileID: 689808957}
   - component: {fileID: 689808958}
-  - component: {fileID: 689808959}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1702,6 +1701,7 @@ Transform:
   m_Children:
   - {fileID: 1969675991}
   - {fileID: 1081942565}
+  - {fileID: 917372080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &689808955
@@ -1722,10 +1722,16 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
-  bulletPrefab: {fileID: 8755344977373526971, guid: e98610ca74a914e9aae616006ee5251e, type: 3}
   firePoint: {fileID: 1081942565}
   isRifleMode: 0
+  hasPowerGun: 0
+  isPowerGunMode: 0
+  hasSniper: 0
+  isSniperMode: 0
+  equippedWeapon: 0
+  weapon: {fileID: 917372081}
 --- !u!61 &689808956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1808,20 +1814,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthFillImage: {fileID: 3860545}
---- !u!114 &689808959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689808950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65528f6f9f5eb4433a60a15a8340d5e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8755344977373526971, guid: e98610ca74a914e9aae616006ee5251e, type: 3}
-  playerController: {fileID: 689808955}
 --- !u!1 &782208947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,14 +2224,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814266232}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f045c90192f3640a4a2915df2fb3e770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
   deathEffect: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 362504695}
 --- !u!1 &841685613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,6 +2441,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907009515}
   m_CullTransparentMesh: 1
+--- !u!1 &917372079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917372080}
+  - component: {fileID: 917372081}
+  m_Layer: 6
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &917372080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917372079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 689808954}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917372081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917372079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65528f6f9f5eb4433a60a15a8340d5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 1081942565}
+  rifleBulletPrefab: {fileID: 8755344977373526971, guid: e98610ca74a914e9aae616006ee5251e, type: 3}
+  powerGunBulletPrefab: {fileID: 2562800229472281649, guid: bbf5f4ad91f524d1298bc9a3e6d6577a, type: 3}
+  sniperBulletPrefab: {fileID: 25815713398897100, guid: 932dcc1b739d7497884ca5fbd8a73c69, type: 3}
+  playerController: {fileID: 689808955}
+  rifleCooldown: 0.2
+  powerGunCooldown: 0.5
+  sniperCooldown: 1
 --- !u!1 &938615972
 GameObject:
   m_ObjectHideFlags: 0
@@ -16036,3 +16080,4 @@ SceneRoots:
   - {fileID: 1956969014}
   - {fileID: 938615974}
   - {fileID: 362504699}
+  - {fileID: 814266236}
