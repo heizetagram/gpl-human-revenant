@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 689808955}
   - component: {fileID: 689808956}
   - component: {fileID: 689808957}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,6 +945,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  spriteRenderer: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  isRifleMode: 0
 --- !u!61 &689808956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2231,7 +2235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1969675991}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

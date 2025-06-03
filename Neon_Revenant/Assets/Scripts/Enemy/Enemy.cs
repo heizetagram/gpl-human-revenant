@@ -1,38 +1,55 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     public int health = 100;
     public GameObject deathEffect;
-    public Animator animator;
+    private Animator _animator;
+    public GameObject[] barcodeLootPrefabs; 
+    public int lootDropCount = 1;  
+    public void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     public void Update()
     {
         float speed = Mathf.Abs(GetComponent<Rigidbody2D>().linearVelocity.x);
-
-        animator.SetBool("isRunning", speed != 0);
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
 
-        animator.SetTrigger("Hit");
+        _animator.SetTrigger("Hurt");
 
         if (health <= 0)
         {
-            animator.SetTrigger("Death");
-            StartCoroutine(WaitAndDie(0.5f));
+            _animator.SetTrigger("Death");
+            StartCoroutine(WaitAndDie(1.5f));
         }
     }
 
     void Die()
     {
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
+        DropLoot();
         Destroy(gameObject);
     }
+    private void DropLoot()
+    {
+        for (int i = 0; i < lootDropCount; i++)
+        {
+            if (barcodeLootPrefabs.Length == 0) return;
 
+            GameObject selectedLoot = barcodeLootPrefabs[UnityEngine.Random.Range(0, barcodeLootPrefabs.Length)];
+            
+            Vector3 spawnPosition = transform.position + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), 0.5f, 0);
+            Instantiate(selectedLoot, spawnPosition, Quaternion.identity);
+        }
+    }
     private IEnumerator WaitAndDie(float delay)
     {
         yield return new WaitForSeconds(delay);

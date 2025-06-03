@@ -37,11 +37,12 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.CompareTag("Player")) return;
-
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if (enemy != null)
+        IDamageable damageable = hitInfo.GetComponent<IDamageable>();
+        Debug.Log(damageable);
+        if (damageable != null)
         {
+            damageable.TakeDamage(damage);
+        }
             float distanceTraveled = Vector2.Distance(startPosition, transform.position);
 
             float maxEffectiveRange = 10f;

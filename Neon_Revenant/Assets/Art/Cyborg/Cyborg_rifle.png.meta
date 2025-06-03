@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Cyborg_rifle_0: 66202809380790809
+      Cyborg_rifle_1: -3799843444256928051
+      Cyborg_rifle_2: -2807323018075281309
+      Cyborg_rifle_3: 1947072385722808198
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

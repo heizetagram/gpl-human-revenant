@@ -36,4 +36,5 @@ public class BossWeapon : MonoBehaviour
             colInfo.GetComponent<PlayerHealth>().TakeDamage(enragedAttackDamage);
         }
     }
+    
 }
