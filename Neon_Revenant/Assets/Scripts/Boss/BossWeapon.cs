@@ -13,6 +13,8 @@ public class BossWeapon : MonoBehaviour
 
     public void Attack()
     {
+        if (GetComponent<BossHealth>().isEnraged)
+            attackDamage = enragedAttackDamage;
         Vector3 pos = transform.position;
         pos += transform.right * attackOffset.x;
         pos += transform.up * attackOffset.y;
@@ -21,19 +23,6 @@ public class BossWeapon : MonoBehaviour
         if (colInfo != null)
         {
             colInfo.GetComponent<PlayerController>().TakeDamage(attackDamage);
-        }
-    }
-
-    public void EnragedAttack()
-    {
-        Vector3 pos = transform.position;
-        pos += transform.right * attackOffset.x;
-        pos += transform.up * attackOffset.y;
-
-        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-        if (colInfo != null)
-        {
-            colInfo.GetComponent<PlayerHealth>().TakeDamage(enragedAttackDamage);
         }
     }
     

@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             _animator.SetTrigger("Death");
-            StartCoroutine(WaitAndDie(1.5f));
+            StartCoroutine(WaitAndDie(1f));
         }
     }
 
