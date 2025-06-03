@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             GetComponent<Animator>().SetTrigger("Death");
-            StartCoroutine(RespawnAfterDelay(3f));
+            StartCoroutine(RespawnAfterDelay(1f));
             
         }
         

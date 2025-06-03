@@ -41,7 +41,7 @@ public class BossHealth : MonoBehaviour, IDamageable
     void Die()
     {
         GetComponent<Animator>().SetTrigger("Death");
-        StartCoroutine(DestroyAfterDelay(3f));
+        StartCoroutine(DestroyAfterDelay(1f));
     }
     
     IEnumerator DestroyAfterDelay(float delay)

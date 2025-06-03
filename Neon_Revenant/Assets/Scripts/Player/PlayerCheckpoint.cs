@@ -24,6 +24,7 @@ public class PlayerCheckpoint : MonoBehaviour
     {
         if (transform.position.y < -20f)
         {
+            GetComponent<PlayerHealth>().RestoreFullHealth();
             Respawn();
         }
     }
