@@ -7323,13 +7323,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a272a912f4ca29b19f7b94c21891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgrounds:
+  tiles:
   - {fileID: 1438195281}
   - {fileID: 129097347}
   - {fileID: 1642413933}
   - {fileID: 782208948}
   cameraTransform: {fileID: 1447881326}
-  parallaxFactor: 0.1
+  parallaxFactor: {x: 0.5, y: 0.5}
 --- !u!4 &227273280
 Transform:
   m_ObjectHideFlags: 0
@@ -7606,14 +7606,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a272a912f4ca29b19f7b94c21891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgrounds:
+  tiles:
   - {fileID: 521387416}
   - {fileID: 1827164725}
   - {fileID: 118092100}
   - {fileID: 314350080}
   - {fileID: 1023519290}
   cameraTransform: {fileID: 1447881326}
-  parallaxFactor: 0.05
+  parallaxFactor: {x: 0.5, y: 0.5}
 --- !u!1 &314350079
 GameObject:
   m_ObjectHideFlags: 0
@@ -12198,13 +12198,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a272a912f4ca29b19f7b94c21891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgrounds:
+  tiles:
   - {fileID: 677428306}
   - {fileID: 431812978}
   - {fileID: 1955145592}
   - {fileID: 1345338818}
   cameraTransform: {fileID: 1447881326}
-  parallaxFactor: 0.01
+  parallaxFactor: {x: 0.5, y: 0.5}
 --- !u!4 &672219626
 Transform:
   m_ObjectHideFlags: 0

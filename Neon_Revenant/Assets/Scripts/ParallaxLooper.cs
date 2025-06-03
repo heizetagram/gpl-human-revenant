@@ -1,44 +1,73 @@
 using UnityEngine;
 using System.Linq;
 
-public class ParallaxLooper : MonoBehaviour
-{
-    public Transform[] backgrounds;        // Alle BGs
-    public Transform cameraTransform;
-    public float parallaxFactor = 0.5f;
+using UnityEngine;
 
-    private Vector3 lastCameraPos;
-    private float backgroundWidth;
+public class Parallax : MonoBehaviour
+{
+    public float multiplier = 0.5f;
+    public bool horizontalOnly = false;
+    public bool calculateInfiniteHorizontalPosition = false;
+    public bool calculateInfiniteVerticalPosition = false;
+    public bool isInfinite;
+
+    public GameObject camera;
+
+    private Vector3 startPosition;
+    private Vector3 startCameraPosition;
+    private float length;
 
     void Start()
     {
-        lastCameraPos = cameraTransform.position;
-        backgroundWidth = backgrounds[0].GetComponent<SpriteRenderer>().bounds.size.x;
-    }
-
-    void Update()
-    {
-        Vector3 delta = cameraTransform.position - lastCameraPos;
-        transform.position += new Vector3(delta.x * parallaxFactor, 0, 0);
-        lastCameraPos = cameraTransform.position;
-
-        // Sortiere nach x-Position
-        backgrounds = backgrounds.OrderBy(bg => bg.position.x).ToArray();
-
-        // Linkester und rechter BG
-        Transform leftMost = backgrounds[0];
-        Transform rightMost = backgrounds[backgrounds.Length - 1];
-
-        // Wenn Kamera zu weit rechts ist → verschiebe ganz linken BG nach rechts
-        if (cameraTransform.position.x > rightMost.position.x - backgroundWidth)
-        {
-            leftMost.position = new Vector3(rightMost.position.x + backgroundWidth, leftMost.position.y, leftMost.position.z);
+        startPosition = transform.position;
+        startCameraPosition = camera.transform.position;
+        if(isInfinite){
+            length = GetComponent<SpriteRenderer>().bounds.size.x;
         }
 
-        // Wenn Kamera zu weit links ist → verschiebe ganz rechten BG nach links
-        if (cameraTransform.position.x < leftMost.position.x + backgroundWidth)
+        CalculateStartPosition();
+
+    }
+
+    void CalculateStartPosition()
+    {
+        float distX = (camera.transform.position.x - transform.position.x) * multiplier;
+        float distY = (camera.transform.position.y - transform.position.y) * multiplier;
+
+        Vector3 tmp = new Vector3(startPosition.x, startPosition.y, startPosition.z);
+
+        if (calculateInfiniteHorizontalPosition)
+            tmp.x = transform.position.x + distX;
+
+        if (calculateInfiniteVerticalPosition)
+            tmp.y = transform.position.y + distY;
+
+        startPosition = tmp;
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 position = startPosition;
+
+        if (horizontalOnly)
         {
-            rightMost.position = new Vector3(leftMost.position.x - backgroundWidth, rightMost.position.y, rightMost.position.z);
+            position.x += multiplier * (camera.transform.position.x - startCameraPosition.x);
+        }
+        else
+        {
+            position += multiplier * (camera.transform.position - startCameraPosition);
+        }
+
+        transform.position = position;
+
+        if(isInfinite){
+            float tmp = camera.transform.position.x * (1-multiplier);
+            if (tmp > startPosition.x + length){
+                startPosition.x += length;
+            }
+            else if(tmp < startPosition.x - length){
+                startPosition.x -= length;
+            }
         }
     }
 }
