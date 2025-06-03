@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,16 +10,24 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
-    private Animator animator;
+    public Animator animator;
     public SpriteRenderer spriteRenderer;
     private PlayerHealth playerHealth;
     private bool isGrounded;
     // From test-3
     private float moveInput;
-    public GameObject bulletPrefab;
+    //public GameObject bulletPrefab;
     public Transform firePoint;
     public bool isRifleMode = false;
     private bool jumpRequested = false;
+
+    //TODO: can only get if x amount of barcodes/SSID are picked up
+    public bool hasPowerGun;
+    public bool isPowerGunMode = false;
+    public bool hasSniper;
+    public bool isSniperMode = false;
+    public WeaponType equippedWeapon;
+    public Weapon weapon;
 
 
     void Start()
@@ -27,6 +36,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerHealth = GetComponent<PlayerHealth>();
+        weapon = weapon = GetComponentInChildren<Weapon>();
+        hasSniper = true;// remember to make false
+        hasPowerGun = true;
     }
 
     void Update()
@@ -40,23 +52,31 @@ public class PlayerController : MonoBehaviour
         else if (moveInput < 0)
             spriteRenderer.flipX = true;
 
-        // Weapons mechanics
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            animator.SetBool("isRifleMode", true);
-            isRifleMode = true;
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            animator.SetBool("isRifleMode", false);
-            isRifleMode = false;
-        }
-
-        if (Input.GetButtonDown("Fire1") && isRifleMode)
+        if (Input.anyKeyDown)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            int direction = spriteRenderer.flipX ? -1 : 1;
-            bullet.GetComponent<Bullet>().SetDirection(direction);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                weapon.SwitchWeapon(KeyCode.Alpha1);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                weapon.SwitchWeapon(KeyCode.Alpha2);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && hasPowerGun)
+            {
+                weapon.SwitchWeapon(KeyCode.Alpha3);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && hasSniper)
+            {
+                weapon.SwitchWeapon(KeyCode.Alpha4);
+            }
+
         }
+        /*
+        if (Input.GetButtonDown("Fire1") && (isRifleMode || isPowerGunMode || isSniperMode))
+        {
+            weapon.Shoot();
+        }*/
         
         FlipPlayer();
 
