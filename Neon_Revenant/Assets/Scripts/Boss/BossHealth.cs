@@ -8,11 +8,11 @@ public class BossHealth : MonoBehaviour, IDamageable
 {
     private HealthBar _healthbar;
     public int health = 500;
-
+    
     public GameObject deathEffect;
 
     public bool isInvulnerable = false;
-
+    public bool isEnraged = false;
     public void Start()
     {
         _healthbar = GetComponentInChildren<HealthBar>();
@@ -26,10 +26,10 @@ public class BossHealth : MonoBehaviour, IDamageable
         GetComponent<Animator>().SetTrigger("Hurt");
         health -= damage;
       
-       // if (health <= 200)
-        //{
-        //    GetComponent<Animator>().SetBool("IsEnraged", true);
-        //}
+       if (health <= 200)
+       {
+           isEnraged = true;
+       }
 
         if (health <= 0)
         {
