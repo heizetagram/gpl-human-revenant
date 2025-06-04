@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Cyborg_rifle-1.png (1)_0: -745711210646721438
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
