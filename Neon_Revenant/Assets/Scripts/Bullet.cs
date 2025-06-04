@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour {
     public int damage = 40;
     public Rigidbody2D rb;
     public float timeToLive = 2f;
-
+    public string shooterTag;
     private int direction = 1;
     private bool directionSet = false;
     private Vector2 startPosition;
@@ -50,6 +50,7 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        if (hitInfo.CompareTag(shooterTag)) return;
         IDamageable damageable = hitInfo.GetComponent<IDamageable>();
         if (damageable != null)
         {

@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation, null);
         int direction = playerController.spriteRenderer.flipX ? -1 : 1;
         bullet.GetComponent<Bullet>().SetDirection(direction);
-
+        bullet.GetComponent<Bullet>().shooterTag = gameObject.tag;
         lastShotTime = Time.time;
 
 
