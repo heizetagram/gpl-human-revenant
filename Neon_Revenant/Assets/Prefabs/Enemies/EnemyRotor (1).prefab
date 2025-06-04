@@ -138,7 +138,7 @@ MonoBehaviour:
   attackCooldown: 1.5
   lookAroundInterval: 2
   groundCheck: {fileID: 5877430264290157052}
-  groundCheckDistance: 1
+  groundCheckDistance: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
