@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class BossHealth : MonoBehaviour, IDamageable
 {
+    public GameObject gewinnUI;
     private HealthBar _healthbar;
     public int health = 500;
     
@@ -42,12 +44,25 @@ public class BossHealth : MonoBehaviour, IDamageable
     {
         GetComponent<Animator>().SetTrigger("Death");
         StartCoroutine(DestroyAfterDelay(1f));
+        
+        
     }
     
     IEnumerator DestroyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        
+        if (gewinnUI != null)
+            gewinnUI.SetActive(true);
+        
+        StartCoroutine(ZuruckZumMenu());
+    }
+    
+    private IEnumerator ZuruckZumMenu()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("MainMenu");
+        Debug.Log("fertig");
     }
 
 }

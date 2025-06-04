@@ -9,7 +9,8 @@ public class BossTrigger : MonoBehaviour
     public Transform bossCameraPosition;
     public Transform player;
     public float cameraSpeed = 2f;
-
+    public GameObject gewinnUI;
+    
     private Vector3 originalCameraPosition;
     private Vector3 targetPosition;
     private bool triggered = false;
@@ -53,9 +54,15 @@ public class BossTrigger : MonoBehaviour
 
         // Spieler übergeben
         Boss bossScript = boss.GetComponent<Boss>();
+        BossHealth healthScript = bossScript.GetComponent<BossHealth>();
         if (bossScript != null)
         {
             bossScript.player = player;
+        }
+        
+        if (healthScript != null)
+        {
+            healthScript.gewinnUI = gewinnUI;
         }
 
         // Rauch nach kurzer Zeit entfernen
