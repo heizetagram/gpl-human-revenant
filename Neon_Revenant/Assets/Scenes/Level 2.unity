@@ -1459,6 +1459,103 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &679900880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.17881
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.17814
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 123.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.8116941
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 382280698159812328, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 547919045062196912, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_Name
+      value: BarcodeLootPrefab 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941996787873065683, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148327314782795004, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7941996787873065683, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 547919045062196912, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 679900882}
+  m_SourcePrefab: {fileID: 100100000, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+--- !u!1 &679900881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 547919045062196912, guid: 8c61d986d3812408a86adbe1578c8e7e, type: 3}
+  m_PrefabInstance: {fileID: 679900880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &679900882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679900881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b82de01e9a742999f94a7b99382137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wartezeit: 2
+  gewinnUI: {fileID: 0}
+  WinAmount: 100
 --- !u!1 &680011399
 GameObject:
   m_ObjectHideFlags: 0
@@ -21910,3 +22007,4 @@ SceneRoots:
   - {fileID: 494514242}
   - {fileID: 803787894}
   - {fileID: 875780178}
+  - {fileID: 679900880}
