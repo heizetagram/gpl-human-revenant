@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1834642132625050013}
   - component: {fileID: 5891727790672796034}
   - component: {fileID: 770120830663486522}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Power_gun_bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,5 +179,6 @@ MonoBehaviour:
   damage: 15
   rb: {fileID: 1834642132625050013}
   timeToLive: 2
+  shooterTag: 
   sound: {fileID: 8300000, guid: 70c97e425596b8142b7b9163256c0868, type: 3}
   hitmarkerSound: {fileID: 8300000, guid: 0c785bd44008a4183b61d6f1d0238575, type: 3}

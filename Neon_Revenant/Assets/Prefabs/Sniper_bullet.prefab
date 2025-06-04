@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6889404310721477499}
   - component: {fileID: 6929616280810792130}
   - component: {fileID: 5799321583721836502}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Sniper_bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,5 +179,6 @@ MonoBehaviour:
   damage: 50
   rb: {fileID: 6889404310721477499}
   timeToLive: 2
+  shooterTag: 
   sound: {fileID: 8300000, guid: f40794d4cad4f4783827b28da1817073, type: 3}
   hitmarkerSound: {fileID: 8300000, guid: 0c785bd44008a4183b61d6f1d0238575, type: 3}
