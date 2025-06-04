@@ -16,8 +16,9 @@ public class BossWeapon : MonoBehaviour
         if (GetComponent<BossHealth>().isEnraged)
             attackDamage = enragedAttackDamage;
         Vector3 pos = transform.position;
-        pos += transform.right * attackOffset.x;
-        pos += transform.up * attackOffset.y;
+        Vector3 direction = (transform.localScale.x > 0) ? Vector3.right : Vector3.left;
+        pos += direction * attackOffset.x;
+        pos += Vector3.up * attackOffset.y;
 
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null)
