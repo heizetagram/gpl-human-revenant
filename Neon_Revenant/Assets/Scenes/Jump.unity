@@ -16967,6 +16967,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4815773974878441547, guid: d11e054c2790841399d8694562beaa9c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1874927595}
+    - target: {fileID: 4815773974878441547, guid: d11e054c2790841399d8694562beaa9c, type: 3}
       propertyPath: stoppingDistance
       value: 0.2
       objectReference: {fileID: 0}
