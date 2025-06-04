@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1834642132625050013}
   - component: {fileID: 5891727790672796034}
   - component: {fileID: 770120830663486522}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Power_gun_bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
