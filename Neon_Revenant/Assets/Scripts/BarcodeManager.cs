@@ -7,6 +7,7 @@ public class BarcodeManager : MonoBehaviour
 
     public int totalBarcodes = 0;
     public TextMeshProUGUI amountText;
+    public PlayerController playerController;
 
     void Awake()
     {
@@ -20,6 +21,11 @@ public class BarcodeManager : MonoBehaviour
     {
         totalBarcodes += amount;
         UpdateText();
+
+        if (playerController != null)
+        {
+            playerController.AssignGuns(totalBarcodes);
+        }
     }
 
     void UpdateText()

@@ -110,7 +110,7 @@ public class EnemyWeapon : MonoBehaviour
         if (bulletScript != null)
         {
             bulletScript.SetDirection(direction < 0 ? -1 : 1);
-            bulletScript.shooterTag = gameObject.tag; // z.B. "Enemy"
+            //bulletScript.shooterTag = gameObject.tag; // z.B. "Enemy"
         }
     }
     

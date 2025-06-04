@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1834642132625050013}
   - component: {fileID: 5891727790672796034}
   - component: {fileID: 770120830663486522}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Power_gun_bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -198738019
-  m_SortingLayer: 5
+  m_SortingLayerID: 1047996113
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -4178046375966092550, guid: 031c7e8cde028429796414a112fd65d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -179,3 +179,5 @@ MonoBehaviour:
   damage: 15
   rb: {fileID: 1834642132625050013}
   timeToLive: 2
+  sound: {fileID: 8300000, guid: 70c97e425596b8142b7b9163256c0868, type: 3}
+  hitmarkerSound: {fileID: 8300000, guid: 0c785bd44008a4183b61d6f1d0238575, type: 3}

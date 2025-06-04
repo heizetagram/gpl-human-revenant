@@ -1,13 +1,20 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
+    public GameObject fakeGlow;
     public GameObject rifleBulletPrefab;
     public GameObject powerGunBulletPrefab;
     public GameObject sniperBulletPrefab;
     public PlayerController playerController;
+    private SpriteRenderer fakeGlowRenderer;
+    public GameObject meleeIconGO;
+    public GameObject rifleIconGO;
+    public GameObject powerGunIconGO;
+    public GameObject sniperIconGO;
     private float lastShotTime = 0f;
     public float rifleCooldown = 0.2f;
     public float powerGunCooldown = 0.3f;
@@ -17,7 +24,11 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         firePoint = playerController.firePoint;
+        
+        if (fakeGlow != null)
+            fakeGlowRenderer = fakeGlow.GetComponent<SpriteRenderer>();
     }
+
 
     void Update()
     {
@@ -30,6 +41,7 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
+
         GameObject bulletPrefab = GetEquippedWeaponBullet();
         if (bulletPrefab == null) return;
 
@@ -38,7 +50,28 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().SetDirection(direction);
 
         lastShotTime = Time.time;
+
+
+        if (fakeGlowRenderer != null)
+        {
+            if (playerController.equippedWeapon == WeaponType.Power)
+                fakeGlowRenderer.color = Color.cyan;
+            else
+                fakeGlowRenderer.color = Color.yellow;
+        }
+
+        if (fakeGlow != null)
+            StartCoroutine(FlashFakeGlow());
     }
+
+    private IEnumerator FlashFakeGlow()
+    {
+        fakeGlow.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        fakeGlow.SetActive(false);
+    }
+
+
 
     public void SwitchWeapon(KeyCode key)
     {
@@ -47,21 +80,25 @@ public class Weapon : MonoBehaviour
         {
             case KeyCode.Alpha1:
                 EquipWeapon(WeaponType.Melee, "");
+                UpdateWeaponIcons(WeaponType.Melee);
                 break;
             case KeyCode.Alpha2:
                 EquipWeapon(WeaponType.Rifle, "isRifleMode");
                 UpdateFirePointOffset(0.19f, 0.008f);
                 playerController.isRifleMode = true;
+                UpdateWeaponIcons(WeaponType.Rifle);
                 break;
             case KeyCode.Alpha3:
                 EquipWeapon(WeaponType.Power, "isPowerGunMode");
-                UpdateFirePointOffset(0.168f, 0.024f);
+                UpdateFirePointOffset(0.1814f, 0.0309f);
                 playerController.isPowerGunMode = true;
+                UpdateWeaponIcons(WeaponType.Power);
                 break;
             case KeyCode.Alpha4:
                 EquipWeapon(WeaponType.Sniper, "isSniperMode");
-                UpdateFirePointOffset(0.1395f, 0.0363f);
+                UpdateFirePointOffset(0.1821f, 0.0363f);
                 playerController.isSniperMode = true;
+                UpdateWeaponIcons(WeaponType.Sniper);
                 break;
         }
     }
@@ -128,12 +165,21 @@ public class Weapon : MonoBehaviour
         else
             return 0f;
     }
-    
+
     bool CanShoot()
     {
         float cooldown = GetCurrentWeaponCooldown();
         return Time.time >= lastShotTime + cooldown;
     }
+    
+    private void UpdateWeaponIcons(WeaponType weaponType)
+    {
+        meleeIconGO.SetActive(weaponType == WeaponType.Melee);
+        rifleIconGO.SetActive(weaponType == WeaponType.Rifle);
+        powerGunIconGO.SetActive(weaponType == WeaponType.Power);
+        sniperIconGO.SetActive(weaponType == WeaponType.Sniper);
+    }
+
 
 }
 
@@ -144,3 +190,5 @@ public enum WeaponType
     Power,
     Sniper
 }
+
+

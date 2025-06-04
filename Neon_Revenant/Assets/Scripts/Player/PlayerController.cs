@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,14 +16,11 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private PlayerHealth playerHealth;
     private bool isGrounded;
-    // From test-3
     private float moveInput;
-    //public GameObject bulletPrefab;
     public Transform firePoint;
     public bool isRifleMode = false;
     private bool jumpRequested = false;
-
-    //TODO: can only get if x amount of barcodes/SSID are picked up
+    public TextMeshProUGUI unlockMessage;
     public bool hasPowerGun;
     public bool isPowerGunMode = false;
     public bool hasSniper;
@@ -37,8 +36,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerHealth = GetComponent<PlayerHealth>();
         weapon = weapon = GetComponentInChildren<Weapon>();
-        hasSniper = true;// remember to make false
-        hasPowerGun = true;
     }
 
     void Update()
@@ -77,7 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             weapon.Shoot();
         }*/
-        
+
         FlipPlayer();
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -87,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("isRunning", moveInput != 0);
         animator.SetBool("isAirborne", !isGrounded);
-        
+
     }
 
     void FlipPlayer()
@@ -125,4 +122,40 @@ public class PlayerController : MonoBehaviour
             jumpRequested = false;
         }
     }
+
+    public void TakeDamage(int amount)
+    {
+        animator.SetTrigger("Hurt");
+        playerHealth.TakeDamage(amount);
+    }
+
+    void ShowUnlockMessage(string message)
+    {
+        unlockMessage.text = message;
+        unlockMessage.gameObject.SetActive(true);
+        StartCoroutine(HideUnlockMessage());
+    }
+
+    IEnumerator HideUnlockMessage()
+    {
+        yield return new WaitForSeconds(2f);
+        unlockMessage.gameObject.SetActive(false);
+    }
+
+
+    public void AssignGuns(int totalBarcodes)
+    {
+        if (!hasPowerGun && totalBarcodes >= 10)
+        {
+            hasPowerGun = true;
+            ShowUnlockMessage("Power Gun Unlocked");
+        }
+
+        if (!hasSniper && totalBarcodes >= 15)
+        {
+            hasSniper = true;
+            ShowUnlockMessage("Sniper Unlocked");
+        }
+    }
 }
+
