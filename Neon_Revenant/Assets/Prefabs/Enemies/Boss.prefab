@@ -18,9 +18,9 @@ GameObject:
   - component: {fileID: 2767034327493300677}
   - component: {fileID: -5041364706770805788}
   - component: {fileID: -4807777934019240470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2055777ea193c41a8a820f01e01dd08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gewinnUI: {fileID: 0}
   health: 500
   deathEffect: {fileID: 0}
   isInvulnerable: 0
@@ -362,7 +363,7 @@ GameObject:
   - component: {fileID: 3874177719302113284}
   - component: {fileID: 7336775737207179657}
   - component: {fileID: 1718252123885790116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +441,7 @@ GameObject:
   - component: {fileID: 8174302545918302054}
   - component: {fileID: 3668784384322914077}
   - component: {fileID: 6319018431445346175}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
