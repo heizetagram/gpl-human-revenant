@@ -8,8 +8,9 @@ public class EnemyChase : MonoBehaviour
     public float attackCooldown = 1.5f;
     public float lookAroundInterval = 2f; 
     private float nextLookTime = 0f;
-    public LayerMask visionMask;
-    
+    public Transform groundCheck;
+    public float groundCheckDistance = 5f;
+    public LayerMask groundLayer;
     public bool useJumpAttack = false;
     public float jumpForce = 10f;
     public float jumpAttackDistance = 4f;
@@ -43,22 +44,14 @@ public class EnemyChase : MonoBehaviour
 
             if (direction.x != 0)
                 sr.flipX = direction.x < 0;
-
-            if (distance > stoppingDistance)
+            if (distance > stoppingDistance && IsGroundAhead())
+                transform.position += (Vector3)(direction * (speed * Time.deltaTime));
+            else if (Time.time >= lastAttackTime + attackCooldown && distance <= stoppingDistance )
             {
-                transform.position += (Vector3)(direction * speed * Time.deltaTime);
-            }
-            else if (Time.time >= lastAttackTime + attackCooldown)
-            {
-                Debug.Log("Kommt er hier rein??");
                 if (useJumpAttack && distance < jumpAttackDistance)
-                {
                     JumpTowardsPlayer(direction);
-                }
                 else
-                {
                     Attack();
-                }
                 lastAttackTime = Time.time;
             }
         }
@@ -113,5 +106,14 @@ public class EnemyChase : MonoBehaviour
         {
             sr.flipX = !sr.flipX;
         }
+    }
+    
+    bool IsGroundAhead()
+    {
+        float direction = sr.flipX ? -1f : 1f;
+        Vector2 checkOrigin = groundCheck.position + new Vector3(direction * 0.5f, 0f);
+        RaycastHit2D hit = Physics2D.Raycast(checkOrigin, Vector2.down, groundCheckDistance, groundLayer);
+        
+        return hit.collider != null;
     }
 }
