@@ -19,9 +19,9 @@ public class Enemy : MonoBehaviour, IDamageable
         float speed = Mathf.Abs(GetComponent<Rigidbody2D>().linearVelocity.x);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amount)
     {
-        health -= damage;
+        health -= amount;
 
         _animator.SetTrigger("Hurt");
 

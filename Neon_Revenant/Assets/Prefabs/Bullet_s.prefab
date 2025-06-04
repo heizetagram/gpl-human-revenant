@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9018215710753766318}
   - component: {fileID: 8186363924462525625}
   - component: {fileID: 7044944165981000059}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Bullet_s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,5 +169,6 @@ MonoBehaviour:
   damage: 10
   rb: {fileID: 9018215710753766318}
   timeToLive: 2
+  shooterTag: 
   sound: {fileID: 8300000, guid: 147406c72b17345d992b0a0733a0dcc9, type: 3}
   hitmarkerSound: {fileID: 8300000, guid: 0c785bd44008a4183b61d6f1d0238575, type: 3}
