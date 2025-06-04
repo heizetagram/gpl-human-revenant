@@ -8,11 +8,10 @@ public class Laser : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController health = other.GetComponent<PlayerController>();
+            PlayerHealth health = other.GetComponent<PlayerHealth>();
             if (health != null)
             {
                 health.TakeDamage(damageAmount);
-                Debug.Log("HSV");
             }
         }
     }

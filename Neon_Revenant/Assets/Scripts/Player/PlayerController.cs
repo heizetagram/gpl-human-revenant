@@ -125,10 +125,4 @@ public class PlayerController : MonoBehaviour
             jumpRequested = false;
         }
     }
-    
-    public void TakeDamage(int amount)
-    {
-        animator.SetTrigger("Hurt");
-        playerHealth.TakeDamage(amount);
-    }
 }

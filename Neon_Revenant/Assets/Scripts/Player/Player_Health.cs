@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public int maxHealth = 100;
     private int currentHealth;
@@ -16,16 +16,16 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amount)
     {
-        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
         if (currentHealth <= 0)
         {
             GetComponent<Animator>().SetTrigger("Death");
             StartCoroutine(RespawnAfterDelay(1f));
             
         }
-        
+        GetComponent<Animator>().SetTrigger("Hurt");
         UpdateHealthBar();
     }
     
