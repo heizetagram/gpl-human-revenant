@@ -12466,6 +12466,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8557340051885817937, guid: 64279514e32cf482dbf9229a4d3bb903, type: 3}
+      propertyPath: 'barcodeLootPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 547919045062196912, guid: e5554cd5f34974cd59870bd733b7587a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12952,6 +12956,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRotor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6532505911611584169, guid: d6f99b52abcde4c5bb682f713d51007b, type: 3}
+      propertyPath: 'barcodeLootPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 547919045062196912, guid: e5554cd5f34974cd59870bd733b7587a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15944,6 +15952,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 716895536845689783, guid: 47cddba24c0af42c184d4b94db07a891, type: 3}
+      propertyPath: 'barcodeLootPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 547919045062196912, guid: e5554cd5f34974cd59870bd733b7587a, type: 3}
+    - target: {fileID: 3403779560635328691, guid: 47cddba24c0af42c184d4b94db07a891, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3861364497445399053, guid: 47cddba24c0af42c184d4b94db07a891, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -15995,6 +16011,10 @@ PrefabInstance:
     - target: {fileID: 7328235561630460918, guid: 47cddba24c0af42c184d4b94db07a891, type: 3}
       propertyPath: m_Name
       value: Infantryman 1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086230597336557561, guid: 47cddba24c0af42c184d4b94db07a891, type: 3}
+      propertyPath: moveSpeed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16618,6 +16638,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 433811968595168300, guid: d11e054c2790841399d8694562beaa9c, type: 3}
+      propertyPath: 'barcodeLootPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 547919045062196912, guid: e5554cd5f34974cd59870bd733b7587a, type: 3}
     - target: {fileID: 717099477077444704, guid: d11e054c2790841399d8694562beaa9c, type: 3}
       propertyPath: m_Name
       value: Swordsman 1 1
@@ -16669,6 +16693,10 @@ PrefabInstance:
     - target: {fileID: 2513493979691762460, guid: d11e054c2790841399d8694562beaa9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815773974878441547, guid: d11e054c2790841399d8694562beaa9c, type: 3}
+      propertyPath: stoppingDistance
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
