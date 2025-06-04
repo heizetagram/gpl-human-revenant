@@ -6,7 +6,10 @@ public class EnemyChase : MonoBehaviour
     public float speed = 2f;
     public float stoppingDistance = 9f;
     public float attackCooldown = 1.5f;
-
+    public float lookAroundInterval = 2f; 
+    private float nextLookTime = 0f;
+    public LayerMask visionMask;
+    
     public bool useJumpAttack = false;
     public float jumpForce = 10f;
     public float jumpAttackDistance = 4f;
@@ -28,24 +31,26 @@ public class EnemyChase : MonoBehaviour
     void Update()
     {
         if (player == null) return;
-
+        if (Time.time >= nextLookTime)
+        {
+            LookAtPlayer();
+            nextLookTime = Time.time + lookAroundInterval;
+        }
         float distance = Vector2.Distance(transform.position, player.position);
-
-        if (distance <= sightRange && CanSeePlayer())
+        if (distance <= sightRange )
         {
             Vector2 direction = (player.position - transform.position).normalized;
 
-            // Flip Sprite
             if (direction.x != 0)
                 sr.flipX = direction.x < 0;
 
-            // Bewegung und Angriff
             if (distance > stoppingDistance)
             {
                 transform.position += (Vector3)(direction * speed * Time.deltaTime);
             }
             else if (Time.time >= lastAttackTime + attackCooldown)
             {
+                Debug.Log("Kommt er hier rein??");
                 if (useJumpAttack && distance < jumpAttackDistance)
                 {
                     JumpTowardsPlayer(direction);
@@ -58,14 +63,7 @@ public class EnemyChase : MonoBehaviour
             }
         }
     }
-
-    bool CanSeePlayer()
-    {
-        Vector2 direction = player.position - transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, sightRange);
-        return hit.collider != null && hit.collider.transform == player;
-    }
-
+    
     void JumpTowardsPlayer(Vector2 direction)
     {
         animator.SetTrigger("Attack");
@@ -102,6 +100,18 @@ public class EnemyChase : MonoBehaviour
             {
                 rb.AddForce(Vector2.right * 100f);
             }
+        }
+    }
+    
+    void LookAtPlayer()
+    {
+        if (player == null) return;
+
+        float playerDirection = player.position.x - transform.position.x;
+
+        if ((playerDirection > 0 && sr.flipX) || (playerDirection < 0 && !sr.flipX))
+        {
+            sr.flipX = !sr.flipX;
         }
     }
 }
