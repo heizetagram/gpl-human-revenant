@@ -6,8 +6,8 @@ public class LaserShooter : MonoBehaviour
     public float shootDuration = 2f;
     public float interval = 3f;
 
-    private float timer = 0f;
-    private bool isShooting = false;
+    private float _timer = 0f;
+    private bool _isShooting = false;
 
     void Start()
     {
@@ -16,9 +16,9 @@ public class LaserShooter : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
+        _timer += Time.deltaTime;
 
-        if (!isShooting && timer >= interval)
+        if (!_isShooting && _timer >= interval)
         {
             StartCoroutine(ShootLaser());
         }
@@ -26,13 +26,13 @@ public class LaserShooter : MonoBehaviour
 
     System.Collections.IEnumerator ShootLaser()
     {
-        isShooting = true;
+        _isShooting = true;
         laserObject.SetActive(true);
 
         yield return new WaitForSeconds(shootDuration);
 
         laserObject.SetActive(false);
-        timer = 0f;
-        isShooting = false;
+        _timer = 0f;
+        _isShooting = false;
     }
 }

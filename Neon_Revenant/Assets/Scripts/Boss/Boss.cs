@@ -3,11 +3,11 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public Transform player;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -19,6 +19,6 @@ public class Boss : MonoBehaviour
     {
         if (player == null) return;
 
-        spriteRenderer.flipX = (transform.position.x > player.position.x);
+        _spriteRenderer.flipX = (transform.position.x > player.position.x);
     }
 }

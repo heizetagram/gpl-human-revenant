@@ -5,7 +5,7 @@ public class Checkpoint : MonoBehaviour
     public Sprite inactiveSprite; 
     public Sprite activeSprite;   
     private SpriteRenderer spriteRenderer;
-    private bool isActivated = false;
+    private bool _isActivated = false;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isActivated) return;
+        if (_isActivated) return;
 
         if (other.CompareTag("Player"))
         {
@@ -31,7 +31,7 @@ public class Checkpoint : MonoBehaviour
 
     void ActivateCheckpoint()
     {
-        isActivated = true;
+        _isActivated = true;
         spriteRenderer.sprite = activeSprite;
     }
 }

@@ -7,7 +7,7 @@ public class EnemyChase : MonoBehaviour
     public float stoppingDistance = 9f;
     public float attackCooldown = 1.5f;
     public float lookAroundInterval = 2f; 
-    private float nextLookTime = 0f;
+    private float _nextLookTime = 0f;
     public Transform groundCheck;
     public float groundCheckDistance = 5f;
     public LayerMask groundLayer;
@@ -17,25 +17,25 @@ public class EnemyChase : MonoBehaviour
 
     public float sightRange = 15f; 
 
-    private float lastAttackTime;
-    private SpriteRenderer sr;
-    private Animator animator;
-    private Rigidbody2D rb;
+    private float _lastAttackTime;
+    private SpriteRenderer _sr;
+    private Animator _animator;
+    private Rigidbody2D _rb;
 
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         if (player == null) return;
-        if (Time.time >= nextLookTime)
+        if (Time.time >= _nextLookTime)
         {
             LookAtPlayer();
-            nextLookTime = Time.time + lookAroundInterval;
+            _nextLookTime = Time.time + lookAroundInterval;
         }
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= sightRange )
@@ -43,29 +43,29 @@ public class EnemyChase : MonoBehaviour
             Vector2 direction = (player.position - transform.position).normalized;
 
             if (direction.x != 0)
-                sr.flipX = direction.x < 0;
+                _sr.flipX = direction.x < 0;
             if (distance > stoppingDistance && IsGroundAhead())
                 transform.position += (Vector3)(direction * (speed * Time.deltaTime));
-            else if (Time.time >= lastAttackTime + attackCooldown && distance <= stoppingDistance )
+            else if (Time.time >= _lastAttackTime + attackCooldown && distance <= stoppingDistance )
             {
                 if (useJumpAttack && distance < jumpAttackDistance)
                     JumpTowardsPlayer(direction);
                 else
                     Attack();
-                lastAttackTime = Time.time;
+                _lastAttackTime = Time.time;
             }
         }
     }
     
     void JumpTowardsPlayer(Vector2 direction)
     {
-        animator.SetTrigger("Attack");
-        rb.AddForce(new Vector2(direction.x * jumpForce, jumpForce), ForceMode2D.Impulse);
+        _animator.SetTrigger("Attack");
+        _rb.AddForce(new Vector2(direction.x * jumpForce, jumpForce), ForceMode2D.Impulse);
     }
 
     void Attack()
     {
-        animator.SetTrigger("Attack");
+        _animator.SetTrigger("Attack");
         PlayerHealth pc = player.GetComponent<PlayerHealth>();
         if (pc != null)
         {
@@ -91,7 +91,7 @@ public class EnemyChase : MonoBehaviour
         {
             if (transform.position.y > collision.transform.position.y + 0.5f)
             {
-                rb.AddForce(Vector2.right * 100f);
+                _rb.AddForce(Vector2.right * 100f);
             }
         }
     }
@@ -102,15 +102,15 @@ public class EnemyChase : MonoBehaviour
 
         float playerDirection = player.position.x - transform.position.x;
 
-        if ((playerDirection > 0 && sr.flipX) || (playerDirection < 0 && !sr.flipX))
+        if ((playerDirection > 0 && _sr.flipX) || (playerDirection < 0 && !_sr.flipX))
         {
-            sr.flipX = !sr.flipX;
+            _sr.flipX = !_sr.flipX;
         }
     }
     
     bool IsGroundAhead()
     {
-        float direction = sr.flipX ? -1f : 1f;
+        float direction = _sr.flipX ? -1f : 1f;
         Vector2 checkOrigin = groundCheck.position + new Vector3(direction * 0.5f, 0f);
         RaycastHit2D hit = Physics2D.Raycast(checkOrigin, Vector2.down, groundCheckDistance, groundLayer);
         

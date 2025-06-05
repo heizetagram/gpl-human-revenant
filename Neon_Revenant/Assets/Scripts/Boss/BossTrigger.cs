@@ -11,48 +11,41 @@ public class BossTrigger : MonoBehaviour
     public float cameraSpeed = 2f;
     public GameObject gewinnUI;
     
-    private Vector3 originalCameraPosition;
-    private Vector3 targetPosition;
-    private bool triggered = false;
+    private Vector3 _originalCameraPosition;
+    private Vector3 _targetPosition;
+    private bool _triggered = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (triggered || !other.CompareTag("Player")) return;
-        triggered = true;
+        if (_triggered || !other.CompareTag("Player")) return;
+        _triggered = true;
 
-        // Kamera-Startposition speichern
-        originalCameraPosition = Camera.main.transform.position;
+        _originalCameraPosition = Camera.main.transform.position;
 
-        // Spiel pausieren
         Time.timeScale = 0;
 
-        // Kamera zum Boss bewegen (per Coroutine mit unscaled time)
         StartCoroutine(MoveCameraSequence());
     }
 
     private IEnumerator MoveCameraSequence()
     {
-        // Phase 1: Kamera fährt zum Boss
-        targetPosition = new Vector3(bossCameraPosition.position.x, bossCameraPosition.position.y,
-            originalCameraPosition.z);
-        yield return StartCoroutine(MoveCameraSmooth(targetPosition));
+        _targetPosition = new Vector3(bossCameraPosition.position.x, bossCameraPosition.position.y,
+            _originalCameraPosition.z);
+        yield return StartCoroutine(MoveCameraSmooth(_targetPosition));
 
         GameObject smoke = Instantiate(smokeEffectPrefab, bossSpawnPoint.position, Quaternion.identity);
         ParticleSystem ps = smoke.GetComponent<ParticleSystem>();
         if (ps != null)
         {
-            ps.Simulate(0f, true, true);  // sofort vorbereiten
-            ps.Play(true);                // sicherstellen, dass es mit unscaled Time läuft
+            ps.Simulate(0f, true, true);
+            ps.Play(true);
         }
 
 
-        // Kurze Pause damit Rauch sichtbar wird
         yield return new WaitForSecondsRealtime(1f);
 
-        // Boss spawnen
         GameObject boss = Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity);
 
-        // Spieler übergeben
         Boss bossScript = boss.GetComponent<Boss>();
         BossHealth healthScript = bossScript.GetComponent<BossHealth>();
         if (bossScript != null)
@@ -65,17 +58,13 @@ public class BossTrigger : MonoBehaviour
             healthScript.gewinnUI = gewinnUI;
         }
 
-        // Rauch nach kurzer Zeit entfernen
         Destroy(smoke, 2f);
 
-        // Kurze Pause bevor Kamera zurückfährt
         yield return new WaitForSecondsRealtime(1f);
 
-        // Phase 2: Kamera zurück zum Spieler
-        targetPosition = new Vector3(player.position.x, player.position.y, originalCameraPosition.z);
-        yield return StartCoroutine(MoveCameraSmooth(targetPosition));
+        _targetPosition = new Vector3(player.position.x, player.position.y, _originalCameraPosition.z);
+        yield return StartCoroutine(MoveCameraSmooth(_targetPosition));
 
-        // Spiel weiterlaufen lassen
         Time.timeScale = 1;
     }
 
@@ -89,7 +78,6 @@ public class BossTrigger : MonoBehaviour
             yield return null;
         }
 
-        // Endposition direkt setzen
         Camera.main.transform.position = new Vector3(target.x, target.y, Camera.main.transform.position.z);
     }
 }

@@ -10,7 +10,6 @@ public class BarcodeLoot : MonoBehaviour
         {
             Debug.Log("Barcode eingesammelt! +" + value);
 
-            // Barcode dem Manager hinzufügen
             if (BarcodeManager.Instance != null)
                 BarcodeManager.Instance.AddBarcode(value);
 

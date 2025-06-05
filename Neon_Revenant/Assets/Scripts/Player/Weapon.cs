@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     public GameObject rifleIconGO;
     public GameObject powerGunIconGO;
     public GameObject sniperIconGO;
-    private float lastShotTime = 0f;
+    private float _lastShotTime = 0f;
     public float rifleCooldown = 0.2f;
     public float powerGunCooldown = 0.3f;
     public float sniperCooldown = 1.0f;
@@ -49,7 +49,7 @@ public class Weapon : MonoBehaviour
         int direction = playerController.spriteRenderer.flipX ? -1 : 1;
         bullet.GetComponent<Bullet>().SetDirection(direction);
         bullet.GetComponent<Bullet>().shooterTag = gameObject.tag;
-        lastShotTime = Time.time;
+        _lastShotTime = Time.time;
 
 
         if (fakeGlowRenderer != null)
@@ -169,7 +169,7 @@ public class Weapon : MonoBehaviour
     bool CanShoot()
     {
         float cooldown = GetCurrentWeaponCooldown();
-        return Time.time >= lastShotTime + cooldown;
+        return Time.time >= _lastShotTime + cooldown;
     }
     
     private void UpdateWeaponIcons(WeaponType weaponType)

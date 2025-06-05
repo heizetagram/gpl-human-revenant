@@ -14,12 +14,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    private PlayerHealth playerHealth;
-    private bool isGrounded;
-    private float moveInput;
+    private PlayerHealth _playerHealth;
+    private bool _isGrounded;
+    private float _moveInput;
     public Transform firePoint;
     public bool isRifleMode = false;
-    private bool jumpRequested = false;
+    private bool _jumpRequested = false;
     public TextMeshProUGUI unlockMessage;
     public bool hasPowerGun;
     public bool isPowerGunMode = false;
@@ -34,19 +34,19 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        playerHealth = GetComponent<PlayerHealth>();
+        _playerHealth = GetComponent<PlayerHealth>();
         weapon = weapon = GetComponentInChildren<Weapon>();
     }
 
     void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
+        _moveInput = Input.GetAxisRaw("Horizontal");
 
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(_moveInput * moveSpeed, rb.linearVelocity.y);
 
-        if (moveInput > 0)
+        if (_moveInput > 0)
             spriteRenderer.flipX = false;
-        else if (moveInput < 0)
+        else if (_moveInput < 0)
             spriteRenderer.flipX = true;
 
         if (Input.anyKeyDown)
@@ -77,25 +77,25 @@ public class PlayerController : MonoBehaviour
 
         FlipPlayer();
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && _isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
-        animator.SetBool("isRunning", moveInput != 0);
-        animator.SetBool("isAirborne", !isGrounded);
+        animator.SetBool("isRunning", _moveInput != 0);
+        animator.SetBool("isAirborne", !_isGrounded);
 
     }
 
     void FlipPlayer()
     {
-        if (moveInput > 0)
+        if (_moveInput > 0)
         {
             spriteRenderer.flipX = false;
             firePoint.localPosition = new Vector3(Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
             firePoint.localEulerAngles = new Vector3(0, 0, 0);
         }
-        else if (moveInput < 0)
+        else if (_moveInput < 0)
         {
             spriteRenderer.flipX = true;
             firePoint.localPosition = new Vector3(-Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
@@ -112,21 +112,21 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D[] results = new RaycastHit2D[1];
         int hitCount = rb.Cast(Vector2.down, filter, results, 0.1f);
 
-        isGrounded = hitCount > 0;
+        _isGrounded = hitCount > 0;
 
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(_moveInput * moveSpeed, rb.linearVelocity.y);
 
-        if (jumpRequested)
+        if (_jumpRequested)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            jumpRequested = false;
+            _jumpRequested = false;
         }
     }
 
     public void TakeDamage(int amount)
     {
         animator.SetTrigger("Hurt");
-        playerHealth.TakeDamage(amount);
+        _playerHealth.TakeDamage(amount);
     }
 
     void ShowUnlockMessage(string message)
