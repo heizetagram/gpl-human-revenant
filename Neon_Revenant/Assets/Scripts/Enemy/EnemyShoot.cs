@@ -48,7 +48,7 @@ public class EnemyWeapon : MonoBehaviour
             }
             else
             {
-                _rb.linearVelocity = Vector2.zero
+                _rb.linearVelocity = Vector2.zero;
             }
         }
         else
