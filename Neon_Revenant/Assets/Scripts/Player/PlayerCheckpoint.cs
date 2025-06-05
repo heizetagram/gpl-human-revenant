@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class PlayerCheckpoint : MonoBehaviour
 {
-    private Vector3 respawnPosition;
+    private Vector3 _respawnPosition;
 
     void Start()
     {
-        respawnPosition = transform.position;
+        _respawnPosition = transform.position;
     }
 
     public void SetCheckpoint(Vector3 checkpointPos)
     {
-        respawnPosition = checkpointPos;
+        _respawnPosition = checkpointPos;
     }
 
     public void Respawn()
     {
-        transform.position = respawnPosition;
+        transform.position = _respawnPosition;
         
     }
     

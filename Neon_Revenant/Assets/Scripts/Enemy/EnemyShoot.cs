@@ -16,31 +16,31 @@ public class EnemyWeapon : MonoBehaviour
     public float minAttackInterval = 2f;
     public float maxAttackInterval = 5f;
 
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
-    private Animator animator;
+    private Rigidbody2D _rb;
+    private SpriteRenderer _sr;
+    private Animator _animator;
 
-    private bool movingRight = true;
-    private bool isAttacking = false;
-    private float nextAttackTime = 0f;
+    private bool _movingRight = true;
+    private bool _isAttacking = false;
+    private float _nextAttackTime = 0f;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
 
         SetNextAttackTime();
     }
 
     void Update()
     {
-        if (Time.time >= nextAttackTime && !isAttacking)
+        if (Time.time >= _nextAttackTime && !_isAttacking)
         {
             StartAttack();
         }
 
-        if (!isAttacking)
+        if (!_isAttacking)
         {
             if (!IsPlayerInFront())
             {
@@ -48,21 +48,21 @@ public class EnemyWeapon : MonoBehaviour
             }
             else
             {
-                rb.linearVelocity = Vector2.zero; // Spieler erkannt → stehen bleiben
+                _rb.linearVelocity = Vector2.zero
             }
         }
         else
         {
-            rb.linearVelocity = Vector2.zero; 
+            _rb.linearVelocity = Vector2.zero; 
         }
 
     }
 
     void Patrol()
     {
-        rb.linearVelocity = new Vector2((movingRight ? 1 : -1) * moveSpeed, rb.linearVelocity.y);
+        _rb.linearVelocity = new Vector2((_movingRight ? 1 : -1) * moveSpeed, _rb.linearVelocity.y);
 
-        Vector2 checkPos = groundCheck.position + Vector3.right * (movingRight ? 1f : -1f);
+        Vector2 checkPos = groundCheck.position + Vector3.right * (_movingRight ? 1f : -1f);
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, 1f, groundLayer);
 
         if (!hit)
@@ -73,37 +73,36 @@ public class EnemyWeapon : MonoBehaviour
 
     void Flip()
     {
-        movingRight = !movingRight;
-        sr.flipX = !sr.flipX;
+        _movingRight = !_movingRight;
+        _sr.flipX = !_sr.flipX;
     }
 
     void StartAttack()
     {
-        isAttacking = true;
-        animator.SetTrigger("Attack");
+        _isAttacking = true;
+        _animator.SetTrigger("Attack");
 
-        Invoke(nameof(EndAttack), 1f); // Ende des Angriffs nach 1 Sekunde
+        Invoke(nameof(EndAttack), 1f);
     }
 
     void EndAttack()
     {
-        isAttacking = false;
+        _isAttacking = false;
         SetNextAttackTime();
     }
 
     void SetNextAttackTime()
     {
         float delay = Random.Range(minAttackInterval, maxAttackInterval);
-        nextAttackTime = Time.time + delay;
+        _nextAttackTime = Time.time + delay;
     }
 
-    // Wird von Animation Event aufgerufen
     public void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
-        float direction = sr.flipX ? -1f : 1f;
+        float direction = _sr.flipX ? -1f : 1f;
         bulletRb.linearVelocity = new Vector2(direction * bulletSpeed, 0f);
 
         Bullet bulletScript = bullet.GetComponent<Bullet>();
@@ -116,7 +115,7 @@ public class EnemyWeapon : MonoBehaviour
     
     bool IsPlayerInFront()
     {
-        Vector2 direction = movingRight ? Vector2.right : Vector2.left;
+        Vector2 direction = _movingRight ? Vector2.right : Vector2.left;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, playerDetectDistance, playerLayer);
         return hit.collider != null && hit.collider.CompareTag("Player");
     }

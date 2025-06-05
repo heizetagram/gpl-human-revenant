@@ -6,20 +6,20 @@ public class Bullet : MonoBehaviour {
     public Rigidbody2D rb;
     public float timeToLive = 2f;
     public string shooterTag;
-    private int direction = 1;
+    private int _direction = 1;
     private bool directionSet = false;
-    private Vector2 startPosition;
+    private Vector2 _startPosition;
     public AudioClip sound;
     public AudioClip hitmarkerSound;
 
     public void SetDirection(int dir)
     {
-        direction = dir;
+        _direction = dir;
         directionSet = true;
 
         if (rb != null)
         {
-            rb.linearVelocity = new Vector2(direction * speed, 0f);
+            rb.linearVelocity = new Vector2(_direction * speed, 0f);
         }
 
         Destroy(gameObject, timeToLive);
@@ -27,10 +27,10 @@ public class Bullet : MonoBehaviour {
 
     void Start()
     {
-        startPosition = transform.position;
+        _startPosition = transform.position;
         if (directionSet)
         {
-            rb.linearVelocity = new Vector2(direction * speed, 0f);
+            rb.linearVelocity = new Vector2(_direction * speed, 0f);
         }
         else
         {
@@ -61,7 +61,7 @@ public class Bullet : MonoBehaviour {
 
             damageable.TakeDamage(damage);
 
-            float distanceTraveled = Vector2.Distance(startPosition, transform.position);
+            float distanceTraveled = Vector2.Distance(_startPosition, transform.position);
 
             float maxEffectiveRange = 10f;
             float minDamageMultiplier = 0.3f; // Never go below 30% of base damage

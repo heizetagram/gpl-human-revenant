@@ -6,20 +6,20 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    private int _currentHealth;
 
     public Image healthFillImage; // Reference to filled (foreground) image
 
     void Start()
     {
-        currentHealth = maxHealth;
+        _currentHealth = maxHealth;
         UpdateHealthBar();
     }
 
     public void TakeDamage(int amount)
     {
-        currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
-        if (currentHealth <= 0)
+        _currentHealth = Mathf.Clamp(_currentHealth - amount, 0, maxHealth);
+        if (_currentHealth <= 0)
         {
             GetComponent<Animator>().SetTrigger("Death");
             StartCoroutine(RespawnAfterDelay(1f));
@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     
     public void RestoreFullHealth()
     {
-        currentHealth = maxHealth;
+        _currentHealth = maxHealth;
         UpdateHealthBar();
     }
     
@@ -53,7 +53,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     void UpdateHealthBar()
     {
-        float fillAmount = (float)currentHealth / maxHealth;
+        float fillAmount = (float)_currentHealth / maxHealth;
         healthFillImage.fillAmount = fillAmount;
     }
     void Update()
